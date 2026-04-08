@@ -1,6 +1,42 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
+const BtnPrimary = ({ children, onClick, className = "" }: { children: React.ReactNode; onClick?: () => void; className?: string }) => (
+  <button
+    onClick={onClick}
+    className={`inline-flex items-center justify-center gap-2 font-bold rounded-2xl text-base text-white cursor-pointer ${className}`}
+    style={{
+      background: "linear-gradient(135deg, #FF5C5C 0%, #FF3366 100%)",
+      padding: "14px 32px",
+      boxShadow: "0 4px 20px rgba(255,92,92,0.4)",
+      border: "none",
+      transition: "transform 0.2s ease, box-shadow 0.2s ease",
+    }}
+    onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 30px rgba(255,92,92,0.55)"; }}
+    onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 4px 20px rgba(255,92,92,0.4)"; }}
+  >
+    {children}
+  </button>
+);
+
+const BtnSecondary = ({ children, onClick, className = "" }: { children: React.ReactNode; onClick?: () => void; className?: string }) => (
+  <button
+    onClick={onClick}
+    className={`inline-flex items-center justify-center gap-2 font-semibold rounded-2xl text-base cursor-pointer ${className}`}
+    style={{
+      background: "rgba(255,255,255,0.1)",
+      color: "#ffffff",
+      padding: "14px 32px",
+      border: "1px solid rgba(255,255,255,0.25)",
+      transition: "all 0.2s ease",
+    }}
+    onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.18)"; }}
+    onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.1)"; }}
+  >
+    {children}
+  </button>
+);
+
 const reviews = [
   {
     name: "Анастасия К.",
@@ -115,9 +151,7 @@ export default function Index() {
             <a href="#reviews" className="hover:text-white transition-colors">Отзывы</a>
             <a href="#about" className="hover:text-white transition-colors">О приложении</a>
           </div>
-          <button className="btn-secondary px-5 py-2.5 rounded-xl text-sm">
-            Скачать
-          </button>
+          <BtnSecondary>Скачать</BtnSecondary>
         </nav>
 
         {/* Hero Content */}
@@ -156,17 +190,14 @@ export default function Index() {
               className="flex flex-wrap gap-4 animate-fade-in opacity-0-init"
               style={{ animationDelay: "0.5s" }}
             >
-              <button className="btn-primary px-8 py-4 rounded-2xl text-base flex items-center gap-2">
+              <BtnPrimary>
                 <Icon name="Download" size={18} />
                 Скачать бесплатно
-              </button>
-              <button
-                onClick={handlePushDemo}
-                className="btn-secondary px-8 py-4 rounded-2xl text-base flex items-center gap-2"
-              >
+              </BtnPrimary>
+              <BtnSecondary onClick={handlePushDemo}>
                 <Icon name="Bell" size={18} />
                 Демо уведомления
-              </button>
+              </BtnSecondary>
             </div>
 
             <div
@@ -396,16 +427,13 @@ export default function Index() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
-              <button
-                onClick={handlePushDemo}
-                className="btn-primary px-8 py-4 rounded-2xl text-base flex items-center justify-center gap-2"
-              >
+              <BtnPrimary onClick={handlePushDemo}>
                 <Icon name="Bell" size={18} />
                 Попробовать сейчас
-              </button>
-              <button className="btn-secondary px-8 py-4 rounded-2xl text-base">
+              </BtnPrimary>
+              <BtnSecondary>
                 Узнать больше
-              </button>
+              </BtnSecondary>
             </div>
           </div>
         </div>
