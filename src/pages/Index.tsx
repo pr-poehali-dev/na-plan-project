@@ -30,12 +30,14 @@ const reviews = [
 ];
 
 const tools = [
-  { icon: "Timer", label: "Таймер", desc: "Точный отсчёт времени для любых задач", bg: BG_TIMER },
-  { icon: "Music", label: "Музыка", desc: "Слушай любимые треки прямо в приложении", bg: BG_MUSIC },
-  { icon: "Gamepad2", label: "Игры", desc: "Расслабься с коллекцией встроенных игр" },
-  { icon: "Cloud", label: "Погода", desc: "Точный прогноз в любом городе мира" },
-  { icon: "StickyNote", label: "Заметки", desc: "Быстрые записи всегда под рукой" },
-  { icon: "Radio", label: "Радио", desc: "Живое вещание из десятков станций" },
+  { icon: "AlarmClock", label: "Секундомер", desc: "Точный секундомер для любых задач и тренировок", bg: BG_TIMER, url: "https://123stopwatch.com" },
+  { icon: "Music", label: "Музыка", desc: "Слушай любимые треки — коллекция на Яндекс Диске", bg: BG_MUSIC, url: "https://disk.yandex.ru" },
+  { icon: "Gamepad2", label: "Игры", desc: "Лучшие игры из топа Яндекс Игр", url: "https://yandex.ru/games" },
+  { icon: "Film", label: "Кино", desc: "Смотри фильмы из коллекции на Яндекс Диске", url: "https://disk.yandex.ru" },
+  { icon: "Timer", label: "Таймер", desc: "Удобный таймер обратного отсчёта", url: "https://123timer.com" },
+  { icon: "StickyNote", label: "Заметки", desc: "Быстрые чеклисты и заметки всегда под рукой", url: "https://my-checklist.ru" },
+  { icon: "Cloud", label: "Погода", desc: "Точный прогноз погоды в любом городе мира", url: "https://www.accuweather.com" },
+  { icon: "Radio", label: "Радио", desc: "Расслабляющее радио и живые станции онлайн", url: "https://zaycev.fm/relax" },
 ];
 
 export default function Index() {
@@ -88,10 +90,10 @@ export default function Index() {
           <a href="#reviews" className="nav-link">Отзывы</a>
           <a href="#about" className="nav-link">О нас</a>
         </div>
-        <button className="btn-yellow" onClick={handlePushDemo}>
-          <Icon name="Bell" size={15} />
-          Уведомления
-        </button>
+        <a href="https://giraffer.fo.team" target="_blank" rel="noopener noreferrer" className="btn-yellow">
+          <Icon name="ExternalLink" size={15} />
+          Открыть сайт
+        </a>
       </nav>
 
       {/* HERO */}
@@ -120,13 +122,19 @@ export default function Index() {
             Работает с 2022 года · Более 500 000 пользователей
           </p>
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
-            <button className="btn-yellow" style={{ fontSize: "1.05rem", padding: "13px 32px" }}>
-              <Icon name="Download" size={18} />
-              Скачать бесплатно
-            </button>
+            <a
+              href="https://giraffer.fo.team"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-yellow"
+              style={{ fontSize: "1.05rem", padding: "13px 32px" }}
+            >
+              <Icon name="ExternalLink" size={18} />
+              Открыть платформу
+            </a>
             <button className="btn-outline" onClick={handlePushDemo} style={{ padding: "12px 28px" }}>
               <Icon name="Bell" size={16} />
-              Включить уведомления
+              Демо уведомления
             </button>
           </div>
           <div style={{ display: "flex", justifyContent: "center", gap: 40, marginTop: 52 }}>
@@ -155,14 +163,14 @@ export default function Index() {
         <p style={{ textAlign: "center", color: "rgba(255,255,255,0.5)", marginBottom: 48, fontFamily: "Arimo" }}>
           Выбери нужный инструмент и открой прямо сейчас
         </p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 20 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 20 }}>
           {tools.map((t, i) => (
             <div
               key={i}
               className="section-card"
               style={{
                 backgroundImage: t.bg ? `url(${t.bg})` : undefined,
-                backgroundColor: t.bg ? undefined : ["#1a1520", "#0f1a20", "#1a1a10", "#0f1520", "#1a100f", "#101520"][i],
+                backgroundColor: t.bg ? undefined : ["#1a1520","#0f1a20","#1a1a10","#0f1520","#1a100f","#101520","#151520","#0f1a15"][i],
               }}
             >
               <div className="section-card-overlay" />
@@ -181,8 +189,21 @@ export default function Index() {
                   {t.desc}
                 </p>
                 <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                  <button className="btn-yellow">Открыть.</button>
-                  <button className="btn-outline" style={{ fontSize: "0.8rem" }}>Сообщить об ошибке.</button>
+                  <a
+                    href={t.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-yellow"
+                  >
+                    Открыть.
+                  </a>
+                  <a
+                    href={`mailto:support@giraffer.fo.team?subject=Ошибка: ${t.label}`}
+                    className="btn-outline"
+                    style={{ fontSize: "0.8rem" }}
+                  >
+                    Сообщить об ошибке.
+                  </a>
                 </div>
               </div>
             </div>
@@ -253,12 +274,19 @@ export default function Index() {
             <p style={{ fontFamily: "Arimo", color: "rgba(255,255,255,0.5)", lineHeight: 1.7, fontSize: "0.95rem", marginBottom: 32 }}>
               Умные push-уведомления сообщают только о важном — система учится вашим привычкам и не беспокоит по пустякам.
             </p>
-            <div style={{ display: "flex", gap: 12 }}>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <button className="btn-yellow" onClick={handlePushDemo}>
                 <Icon name="Bell" size={16} />
-                Включить уведомления
+                Демо уведомления
               </button>
-              <button className="btn-outline">Узнать больше</button>
+              <a
+                href="https://giraffer.fo.team"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline"
+              >
+                Открыть платформу
+              </a>
             </div>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
@@ -297,8 +325,8 @@ export default function Index() {
           <span style={{ fontFamily: "Pacifico, cursive", fontSize: 20, color: "#fed330" }}>Giraffer</span>
         </div>
         <div style={{ display: "flex", gap: 24 }}>
-          <a href="#" className="nav-link" style={{ fontSize: "0.85rem" }}>Политика конфиденциальности</a>
-          <a href="#" className="nav-link" style={{ fontSize: "0.85rem" }}>Поддержка</a>
+          <a href="https://giraffer.fo.team" target="_blank" rel="noopener noreferrer" className="nav-link" style={{ fontSize: "0.85rem" }}>Платформа</a>
+          <a href="mailto:support@giraffer.fo.team" className="nav-link" style={{ fontSize: "0.85rem" }}>Поддержка</a>
         </div>
         <p style={{ fontFamily: "Arimo", color: "rgba(255,255,255,0.25)", fontSize: "0.82rem" }}>
           © 2025 Giraffer. Бесплатная платформа.
