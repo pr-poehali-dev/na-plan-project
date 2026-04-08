@@ -6,40 +6,29 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
-
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
-
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
     /* Brand */
-    --brand-coral: #ff5c5c;
-    --brand-electric: #5b5bff;
-    --brand-yellow: #ffd600;
-    --brand-dark: #0f0f1a;
-    --brand-light: #f8f7ff;
+    --yellow: #fed330;
+    --dark: #1a1a1a;
+    --card-overlay: rgba(30, 30, 40, 0.72);
   }
 }
 
@@ -47,94 +36,129 @@
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground font-golos;
-    font-family: "Golos Text", sans-serif;
+    @apply bg-background text-foreground;
+    font-family: "Arimo", sans-serif;
+    background-color: #111;
+    color: #f0f0f0;
   }
 }
 
 @layer utilities {
-  .opacity-0-init {
-    opacity: 0;
+  .bg-site {
+    background-color: #111;
+    min-height: 100vh;
   }
 
-  .gradient-text {
-    background: linear-gradient(
-      135deg,
-      var(--brand-coral) 0%,
-      var(--brand-electric) 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .card-dark {
+    background: var(--card-overlay);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    overflow: hidden;
   }
 
-  .gradient-text-yellow {
-    background: linear-gradient(135deg, var(--brand-yellow) 0%, #ff9500 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-bg {
-    background: linear-gradient(145deg, #0f0f1a 0%, #1a0f3a 50%, #0f1a3a 100%);
-  }
-
-  .card-glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .card-glass-light {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 8px 32px rgba(91, 91, 255, 0.08);
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--brand-coral) 0%, #ff3366 100%);
-    color: white;
+  .btn-yellow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--yellow);
+    color: #111;
     font-weight: 700;
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-    box-shadow: 0 4px 20px rgba(255, 92, 92, 0.4);
+    font-family: "Montserrat", sans-serif;
+    padding: 10px 24px;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.18s ease;
+    text-decoration: none;
   }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(255, 92, 92, 0.5);
-  }
-
-  .btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    font-weight: 600;
-    transition: all 0.2s ease;
-  }
-
-  .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.18);
+  .btn-yellow:hover {
+    background: #ffc900;
     transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(254, 211, 48, 0.35);
   }
 
-  .noise-bg::before {
-    content: "";
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: transparent;
+    color: #ddd;
+    font-weight: 500;
+    font-family: "Montserrat", sans-serif;
+    padding: 9px 22px;
+    border-radius: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.18s ease;
+    text-decoration: none;
+  }
+  .btn-outline:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #fff;
+  }
+
+  .section-card {
+    position: relative;
+    min-height: 280px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .section-card-overlay {
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
+    background: rgba(20, 20, 30, 0.68);
   }
 
-  .star-rating::before {
-    content: "★★★★★";
-    color: var(--brand-yellow);
-    font-size: 1rem;
-    letter-spacing: 2px;
+  .section-card-content {
+    position: relative;
+    z-index: 2;
+    padding: 28px 32px;
+  }
+
+  .stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 28px 20px;
+    text-align: center;
+  }
+
+  .nav-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-link:hover {
+    color: var(--yellow);
+  }
+
+  /* notification popup */
+  .notif-popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+    width: 320px;
+    background: rgba(30, 30, 40, 0.95);
+    border: 1px solid rgba(254, 211, 48, 0.3);
+    border-radius: 12px;
+    padding: 16px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease;
   }
 }

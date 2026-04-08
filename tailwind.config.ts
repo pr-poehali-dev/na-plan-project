@@ -20,7 +20,9 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'golos': ['Golos Text', 'sans-serif'],
+				'pacifico': ['Pacifico', 'cursive'],
+				'arimo': ['Arimo', 'sans-serif'],
+				'montserrat': ['Montserrat', 'sans-serif'],
 				'oswald': ['Oswald', 'sans-serif'],
 			},
 			colors: {
